@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using System.Windows.Forms;
 
 class SQLiteDatabase
 {
@@ -147,7 +146,7 @@ class SQLiteDatabase
         }
         catch (Exception fail)
         {
-            MessageBox.Show(fail.Message);
+            /*MessageBox.Show(fail.Message);*/
             returnCode = false;
         }
         return returnCode;
@@ -177,7 +176,7 @@ class SQLiteDatabase
         }
         catch (Exception fail)
         {
-            MessageBox.Show(fail.Message);
+            /*MessageBox.Show(fail.Message);*/
             returnCode = false;
         }
         return returnCode;
