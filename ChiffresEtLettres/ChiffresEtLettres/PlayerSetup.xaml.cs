@@ -18,9 +18,33 @@ namespace ChiffresEtLettres
     /// </summary>
     public partial class PlayerSetup : Window
     {
+        private bool cancel = true;
+        public bool Cancel
+        {
+            get { return this.cancel; }
+            private set { this.cancel = value; }
+        }
+
+        public String PlayerName
+        {
+            get { return this.playerName.Text; }
+        }
+
         public PlayerSetup()
         {
             InitializeComponent();
+        }
+
+        private void okButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Cancel = false;
+            if (this.PlayerName != "")
+                this.Close();
+        }
+
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

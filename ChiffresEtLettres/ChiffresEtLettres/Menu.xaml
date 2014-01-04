@@ -1,8 +1,9 @@
 ﻿<Window x:Name="menuWindow" x:Class="ChiffresEtLettres.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Des chiffres et des lettres" Height="296" Width="400" ResizeMode="NoResize">
+        Title="Des chiffres et des lettres" Height="296" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Label Content="Des Chiffres et des Lettres" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button x:Name="newHumanGame" Content="Jouer contre un humain" Margin="100,100,100,0" VerticalAlignment="Top" Click="newHumanGame_Click"/>
         <Button x:Name="newBotGame" Content="Jouer contre l'ordinateur" Margin="100,150,100,0" VerticalAlignment="Top" Click="newBotGame_Click"/>
         <Button x:Name="quit" Content="Quitter" Margin="100,200,100,0" VerticalAlignment="Top" Click="quit_Click"/>

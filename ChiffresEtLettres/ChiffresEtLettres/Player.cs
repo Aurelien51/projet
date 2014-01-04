@@ -7,5 +7,11 @@ namespace ChiffresEtLettres
 {
     class Player
     {
+        private string name;
+
+        public Player(String playerName)
+        {
+            this.name = playerName;
+        }
     }
 }

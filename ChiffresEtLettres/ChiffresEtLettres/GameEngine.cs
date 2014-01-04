@@ -7,13 +7,22 @@ namespace ChiffresEtLettres
 {
     static class GameEngine
     {
-        public static void newGame(Player joueur)
+        enum Phase { CompteEstBon, MotPlusLong };
+
+        private static List<Player> players = new List<Player>();
+        private static Phase currentPhase;
+
+        public static void newGame(Player player)
         {
+            GameEngine.players.Add(player);
+            GameEngine.currentPhase = Phase.CompteEstBon;
         }
 
-        public static void newGame(Player joueur1, Player joueur2)
+        public static void newGame(Player player1, Player player2)
         {
-
+            GameEngine.players.Add(player1);
+            GameEngine.players.Add(player2);
+            GameEngine.currentPhase = Phase.CompteEstBon;
         }
     }
 }

@@ -26,28 +26,33 @@ namespace ChiffresEtLettres
 
         private void newHumanGame_Click(object sender, RoutedEventArgs e)
         {
-            // Instantiate the dialog box
             PlayerSetup playerDialog = new PlayerSetup();
-
-            // Configure the dialog box
             playerDialog.Owner = this;
-
-            // Open the dialog box modally 
             playerDialog.ShowDialog();
-
-            // Instantiate the dialog box
-            playerDialog = new PlayerSetup();
-
-            // Configure the dialog box
-            playerDialog.Owner = this;
-
-            // Open the dialog box modally 
-            playerDialog.ShowDialog();
+            if (!playerDialog.Cancel)
+            {
+                Player player1 = new Player(playerDialog.PlayerName);
+                playerDialog = new PlayerSetup();
+                playerDialog.Owner = this;
+                playerDialog.ShowDialog();
+                if (!playerDialog.Cancel)
+                {
+                    Player player2 = new Player(playerDialog.PlayerName);
+                    GameEngine.newGame(player1, player2);
+                }
+            }
         }
 
         private void newBotGame_Click(object sender, RoutedEventArgs e)
         {
-
+            PlayerSetup playerDialog = new PlayerSetup();
+            playerDialog.Owner = this;
+            playerDialog.ShowDialog();
+            if (!playerDialog.Cancel)
+            {
+                Player player = new Player(playerDialog.PlayerName);
+                GameEngine.newGame(player);
+            }
         }
         
         private void quit_Click(object sender, RoutedEventArgs e)
