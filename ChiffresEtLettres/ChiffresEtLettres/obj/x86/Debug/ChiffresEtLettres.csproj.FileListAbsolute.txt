@@ -1,0 +1,14 @@
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\bin\Debug\ChiffresEtLettres.exe
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\bin\Debug\ChiffresEtLettres.pdb
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.csprojResolveAssemblyReference.cache
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\CompteEstBon.baml
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\Menu.baml
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\CompteEstBon.g.cs
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\Menu.g.cs
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\App.g.cs
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres_MarkupCompile.cache
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.g.resources
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.Properties.Resources.resources
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.csproj.GenerateResource.Cache
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.exe
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.pdb
