@@ -23,5 +23,36 @@ namespace ChiffresEtLettres
         {
             InitializeComponent();
         }
+
+        private void newHumanGame_Click(object sender, RoutedEventArgs e)
+        {
+            // Instantiate the dialog box
+            PlayerSetup playerDialog = new PlayerSetup();
+
+            // Configure the dialog box
+            playerDialog.Owner = this;
+
+            // Open the dialog box modally 
+            playerDialog.ShowDialog();
+
+            // Instantiate the dialog box
+            playerDialog = new PlayerSetup();
+
+            // Configure the dialog box
+            playerDialog.Owner = this;
+
+            // Open the dialog box modally 
+            playerDialog.ShowDialog();
+        }
+
+        private void newBotGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        
+        private void quit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

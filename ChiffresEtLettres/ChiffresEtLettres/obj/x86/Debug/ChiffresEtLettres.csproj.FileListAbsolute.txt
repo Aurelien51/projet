@@ -12,3 +12,7 @@ E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLe
 E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.csproj.GenerateResource.Cache
 E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.exe
 E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.pdb
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\MotPlusLong.baml
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\MotPlusLong.g.cs
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\PlayerSetup.baml
+E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\PlayerSetup.g.cs
