@@ -39,6 +39,7 @@ namespace ChiffresEtLettres
                 {
                     Player player2 = new Player(playerDialog.PlayerName);
                     GameEngine.newGame(player1, player2);
+                    startGame();
                 }
             }
         }
@@ -52,12 +53,21 @@ namespace ChiffresEtLettres
             {
                 Player player = new Player(playerDialog.PlayerName);
                 GameEngine.newGame(player);
+                startGame();
             }
         }
         
         private void quit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void startGame()
+        {
+            CompteEstBon phase1 = new CompteEstBon();
+            App.Current.MainWindow = phase1;
+            this.Close();
+            phase1.Show();
         }
     }
 }
