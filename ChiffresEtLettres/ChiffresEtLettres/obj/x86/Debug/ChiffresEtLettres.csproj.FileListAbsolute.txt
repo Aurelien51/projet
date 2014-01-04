@@ -16,3 +16,5 @@ E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\MotPlusLong.
 E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\MotPlusLong.g.cs
 E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\PlayerSetup.baml
 E:\Projets\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\PlayerSetup.g.cs
+C:\Users\Shadow\Documents\GitHub\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.exe
+C:\Users\Shadow\Documents\GitHub\projet\ChiffresEtLettres\ChiffresEtLettres\obj\x86\Debug\ChiffresEtLettres.pdb
