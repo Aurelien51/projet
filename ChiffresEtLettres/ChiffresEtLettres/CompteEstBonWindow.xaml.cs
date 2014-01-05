@@ -16,11 +16,11 @@ namespace ChiffresEtLettres
     /// <summary>
     /// Interaction logic for CompteEstBon.xaml
     /// </summary>
-    public partial class CompteEstBon : Window
+    public partial class CompteEstBonWindow : Window
     {
         private UIElement[,] buttons;
 
-        public CompteEstBon()
+        public CompteEstBonWindow()
         {
             InitializeComponent();
 

@@ -64,7 +64,7 @@ namespace ChiffresEtLettres
 
         private void startGame()
         {
-            CompteEstBon phase1 = new CompteEstBon();
+            CompteEstBonWindow phase1 = new CompteEstBonWindow();
             App.Current.MainWindow = phase1;
             this.Close();
             phase1.Show();

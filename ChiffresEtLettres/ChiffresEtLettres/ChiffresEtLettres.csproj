@@ -59,7 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CompteEstBon.xaml">
+    <Page Include="CompteEstBonWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,8 +71,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompteEstBon.xaml.cs">
-      <DependentUpon>CompteEstBon.xaml</DependentUpon>
+    <Compile Include="CompteEstBon.cs" />
+    <Compile Include="CompteEstBonWindow.xaml.cs">
+      <DependentUpon>CompteEstBonWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dictionnaire.cs">
       <SubType>Code</SubType>
@@ -96,6 +97,7 @@
     <Compile Include="MotPlusLong.xaml.cs">
       <DependentUpon>MotPlusLong.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Phase.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerSetup.xaml.cs">
       <DependentUpon>PlayerSetup.xaml</DependentUpon>
