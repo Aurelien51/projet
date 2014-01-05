@@ -18,13 +18,57 @@ namespace ChiffresEtLettres
     /// </summary>
     public partial class CompteEstBonWindow : Window
     {
-        private UIElement[,] buttons;
+        private Button[,] mathGridButtons;
+        private Button[] numbers;
+        private Button[] signs;
+        
+        public Button NextNumberButton
+        {
+            get { return this.mathGridButtons[Row, Col]; }
+        }
+        public Button NextSignButton
+        {
+            get { return this.mathGridButtons[Row, Col]; }
+        }
+
+        private int row = 0;
+        public int Row
+        {
+            get { return this.row; }
+            set
+            {
+                if (value > 2)
+                {
+                    row = 0;
+                    col++;
+                }
+                else
+                    row = value;
+            }
+        }
+        private int col = 0;
+        public int Col
+        {
+            get { return this.col; }
+        }
 
         public CompteEstBonWindow()
         {
             InitializeComponent();
 
-            buttons = new UIElement[5,5];
+            mathGridButtons = new Button[3, 5];
+            numbers = new Button[10];
+            signs = new Button[4];
+
+            signs[0] = plusButton;
+            signs[1] = minusButton;
+            signs[2] = multiplyButton;
+            signs[3] = divideButton;
+
+            foreach (Button sign in signs)
+            {
+                sign.Click += AddSignButton;
+            }
 
             for (int i = 0; i < 5; i++)
             {
@@ -36,7 +80,7 @@ namespace ChiffresEtLettres
                 tmp.HorizontalAlignment = HorizontalAlignment.Left;
                 tmp.VerticalAlignment = VerticalAlignment.Top;
                 calculGrid.Children.Add(tmp);
-                buttons[0, i] = tmp;
+                mathGridButtons[0, i] = tmp;
 
                 tmp = new Button();
                 tmp.IsEnabled = false;
@@ -46,7 +90,7 @@ namespace ChiffresEtLettres
                 tmp.HorizontalAlignment = HorizontalAlignment.Left;
                 tmp.VerticalAlignment = VerticalAlignment.Top;
                 calculGrid.Children.Add(tmp);
-                buttons[1, i] = tmp;
+                mathGridButtons[1, i] = tmp;
 
                 tmp = new Button();
                 tmp.IsEnabled = false;
@@ -56,7 +100,7 @@ namespace ChiffresEtLettres
                 tmp.HorizontalAlignment = HorizontalAlignment.Left;
                 tmp.VerticalAlignment = VerticalAlignment.Top;
                 calculGrid.Children.Add(tmp);
-                buttons[2, i] = tmp;
+                mathGridButtons[2, i] = tmp;
 
                 Label lTmp = new Label();
                 lTmp.IsEnabled = false;
@@ -70,7 +114,6 @@ namespace ChiffresEtLettres
                 lTmp.HorizontalAlignment = HorizontalAlignment.Left;
                 lTmp.VerticalAlignment = VerticalAlignment.Top;
                 calculGrid.Children.Add(lTmp);
-                buttons[3, i] = lTmp;
 
                 tmp = new Button();
                 tmp.IsEnabled = false;
@@ -80,7 +123,66 @@ namespace ChiffresEtLettres
                 tmp.HorizontalAlignment = HorizontalAlignment.Left;
                 tmp.VerticalAlignment = VerticalAlignment.Top;
                 calculGrid.Children.Add(tmp);
-                buttons[4, i] = tmp;
+                if (i<4)
+                    numbers[6+i] = tmp;
+            }
+
+            this.numberLabel.Content = ((CompteEstBon)(GameEngine.CurrentPhase)).NumberToReach;
+
+            for (int i = 0; i<((CompteEstBon)(GameEngine.CurrentPhase)).NumbersAvailable.Length; i++)
+            {
+                Button tmp = new Button();
+                tmp.Width = 40;
+                tmp.Height = 23;
+                tmp.Margin = new Thickness(i * 50+50, 10, 0, 0);
+                tmp.HorizontalAlignment = HorizontalAlignment.Left;
+                tmp.VerticalAlignment = VerticalAlignment.Top;
+                tmp.Content = ((CompteEstBon)(GameEngine.CurrentPhase)).NumbersAvailable[i];
+                tmp.Click += AddNumberButton;
+                tmp.Tag = ((CompteEstBon)(GameEngine.CurrentPhase)).NumbersAvailable[i];
+                this.numbersGrid.Children.Add(tmp);
+                numbers[i] = tmp;
+            }
+        }
+
+        private void AddNumberButton(object sender, RoutedEventArgs e)
+        {
+            this.NextNumberButton.Content = ((Button)sender).Tag;
+            this.NextNumberButton.Tag = ((Button)sender).Tag;
+            Row++;
+            SwitchToSignChoice();
+        }
+
+        private void AddSignButton(object sender, RoutedEventArgs e)
+        {
+            this.NextSignButton.Content = ((Button)sender).Content;
+            this.NextSignButton.Tag = ((Button)sender).Content;
+            SwitchToNumberChoice();
+        }
+
+        private void SwitchToSignChoice()
+        {
+            foreach (Button sign in signs)
+            {
+                sign.IsEnabled = true;
+            }
+            foreach (Button number in numbers)
+            {
+                number.IsEnabled = false;
+            }
+        }
+
+        private void SwitchToNumberChoice()
+        {
+            foreach (Button number in numbers)
+            {
+                //TODO Rajouter vérification du numéro non joué
+                if (number.Tag != null)
+                    number.IsEnabled = true;
+            }
+            foreach (Button sign in signs)
+            {
+                sign.IsEnabled = false;
             }
         }
     }

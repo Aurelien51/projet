@@ -1,18 +1,20 @@
 ﻿<Window x:Class="ChiffresEtLettres.CompteEstBonWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Le Compte est bon" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Le Compte est bon" Height="403" Width="388" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid x:Name="calculGrid" Margin="10,103,124,10"/>
-        <Grid x:Name="mathGrid" Margin="732,103,10,10" Width="50">
-            <Button x:Name="plusButton" Content="+" Margin="0,10,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" IsEnabled="False"/>
-            <Button x:Name="minusButton" Content="-" Margin="0,45,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.367,1.167" IsEnabled="False"/>
-            <Button x:Name="multiplyButton" Content="x" Margin="0,80,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" IsEnabled="False"/>
-            <Button x:Name="divideButton" Content="/" Margin="0,115,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" IsEnabled="False"/>
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <Grid x:Name="calculGrid" Margin="10,103,0,0" Width="256" Height="270" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Grid x:Name="mathGrid" Margin="271,103,0,0" Width="50" Height="273" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Button x:Name="plusButton" Content="+" Margin="0,10,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" IsEnabled="False"/>
+                <Button x:Name="minusButton" Content="-" Margin="0,45,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" RenderTransformOrigin="0.367,1.167" IsEnabled="False"/>
+                <Button x:Name="multiplyButton" Content="x" Margin="0,80,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" IsEnabled="False"/>
+                <Button x:Name="divideButton" Content="/" Margin="0,115,10,0" VerticalAlignment="Top" Height="30" HorizontalAlignment="Right" Width="30" FontWeight="Bold" FontSize="18" IsEnabled="False"/>
+            </Grid>
         </Grid>
-        <Grid x:Name="numbersGrid" HorizontalAlignment="Left" Height="88" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+        <Grid x:Name="numbersGrid" HorizontalAlignment="Left" Height="88" Margin="10,10,0,0" VerticalAlignment="Top" Width="360">
             <Label x:Name="numberToReachLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-            <Label x:Name="numberLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="50"/>
+            <Label x:Name="numberLabel" Content="" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="30" Width="40"/>
         </Grid>
     </Grid>
 </Window>
