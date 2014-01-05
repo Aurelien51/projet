@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ChiffresEtLettres
 {
-    abstract class Phase
+    public abstract class Phase
     {
     }
 }

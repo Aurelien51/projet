@@ -21,7 +21,7 @@ namespace ChiffresEtLettres
         private Button[,] mathGridButtons;
         private Button[] numbers;
         private Button[] signs;
-        
+
         public Button NextNumberButton
         {
             get { return this.mathGridButtons[Row, Col]; }
@@ -35,35 +35,58 @@ namespace ChiffresEtLettres
         public int Row
         {
             get { return this.row; }
-            set
-            {
-                if (value > 2)
-                {
-                    row = 0;
-                    col++;
-                }
-                else
-                    row = value;
-            }
         }
         private int col = 0;
         public int Col
         {
             get { return this.col; }
         }
+        public int CurrButton
+        {
+            get { return this.row; }
+            set
+            {
+                if (value > 2)
+                {
+                    row = 0;
+                    this.numberNumber = 0;
+                    mathGridButtons[3, col].Tag = this.Rules.Calculate(numberOne, numberTwo, sign);
+                    mathGridButtons[3, col].Content = ((Number)mathGridButtons[3, col].Tag).Value;
+                    mathGridButtons[3, col].IsEnabled = true;
+                    SwitchToNumberChoice();
+                    col++;
+                }
+                else
+                    row = value;
+            }
+        }
+
+        public int numberNumber = 0;
+        public Number numberOne;
+        public Number.Sign sign;
+        public Number numberTwo;
+
+        public CompteEstBon Rules
+        {
+            get { return (CompteEstBon)(GameEngine.CurrentPhase); }
+        }
 
         public CompteEstBonWindow()
         {
             InitializeComponent();
 
-            mathGridButtons = new Button[3, 5];
+            mathGridButtons = new Button[4, 5];
             numbers = new Button[10];
             signs = new Button[4];
 
             signs[0] = plusButton;
+            plusButton.Tag = Number.Sign.Plus;
             signs[1] = minusButton;
+            minusButton.Tag = Number.Sign.Minus;
             signs[2] = multiplyButton;
+            multiplyButton.Tag = Number.Sign.Multiply;
             signs[3] = divideButton;
+            divideButton.Tag = Number.Sign.Divide;
 
             foreach (Button sign in signs)
             {
@@ -123,23 +146,24 @@ namespace ChiffresEtLettres
                 tmp.HorizontalAlignment = HorizontalAlignment.Left;
                 tmp.VerticalAlignment = VerticalAlignment.Top;
                 calculGrid.Children.Add(tmp);
-                if (i<4)
-                    numbers[6+i] = tmp;
+                mathGridButtons[3, i] = tmp;
+                if (i < 4)
+                    numbers[6 + i] = tmp;
             }
 
-            this.numberLabel.Content = ((CompteEstBon)(GameEngine.CurrentPhase)).NumberToReach;
+            this.numberLabel.Content = this.Rules.NumberToReach;
 
-            for (int i = 0; i<((CompteEstBon)(GameEngine.CurrentPhase)).NumbersAvailable.Length; i++)
+            for (int i = 0; i < this.Rules.NumbersAvailable.Length; i++)
             {
                 Button tmp = new Button();
                 tmp.Width = 40;
                 tmp.Height = 23;
-                tmp.Margin = new Thickness(i * 50+50, 10, 0, 0);
+                tmp.Margin = new Thickness(i * 50 + 50, 10, 0, 0);
                 tmp.HorizontalAlignment = HorizontalAlignment.Left;
                 tmp.VerticalAlignment = VerticalAlignment.Top;
-                tmp.Content = ((CompteEstBon)(GameEngine.CurrentPhase)).NumbersAvailable[i];
+                tmp.Content = this.Rules.NumbersAvailable[i].Value;
                 tmp.Click += AddNumberButton;
-                tmp.Tag = ((CompteEstBon)(GameEngine.CurrentPhase)).NumbersAvailable[i];
+                tmp.Tag = this.Rules.NumbersAvailable[i];
                 this.numbersGrid.Children.Add(tmp);
                 numbers[i] = tmp;
             }
@@ -147,17 +171,38 @@ namespace ChiffresEtLettres
 
         private void AddNumberButton(object sender, RoutedEventArgs e)
         {
-            this.NextNumberButton.Content = ((Button)sender).Tag;
+            this.NextNumberButton.Content = ((Number)(((Button)sender).Tag)).Value;
             this.NextNumberButton.Tag = ((Button)sender).Tag;
-            Row++;
+            this.NextNumberButton.IsEnabled = true;
+            this.StoreNumber((Number)((Button)sender).Tag);
             SwitchToSignChoice();
+            CurrButton++;
         }
 
         private void AddSignButton(object sender, RoutedEventArgs e)
         {
             this.NextSignButton.Content = ((Button)sender).Content;
             this.NextSignButton.Tag = ((Button)sender).Content;
+            this.NextSignButton.IsEnabled = true;
+            this.StoreSign((Number.Sign)((Button)sender).Tag);
             SwitchToNumberChoice();
+            CurrButton++;
+        }
+
+        private void StoreNumber(Number number)
+        {
+            if (numberNumber == 0)
+            {
+                this.numberOne = number;
+                this.numberNumber++;
+            }
+            else
+                this.numberTwo = number;
+        }
+
+        private void StoreSign(Number.Sign sign)
+        {
+            this.sign = sign;
         }
 
         private void SwitchToSignChoice()
@@ -176,8 +221,7 @@ namespace ChiffresEtLettres
         {
             foreach (Button number in numbers)
             {
-                //TODO Rajouter vérification du numéro non joué
-                if (number.Tag != null)
+                if (number.Tag != null && !((Number)number.Tag).HasBeenUsed)
                     number.IsEnabled = true;
             }
             foreach (Button sign in signs)

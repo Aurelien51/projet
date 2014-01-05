@@ -97,6 +97,7 @@
     <Compile Include="MotPlusLong.xaml.cs">
       <DependentUpon>MotPlusLong.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Number.cs" />
     <Compile Include="Phase.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerSetup.xaml.cs">
