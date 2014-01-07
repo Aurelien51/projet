@@ -24,14 +24,24 @@ namespace ChiffresEtLettres
 
         public Button NextNumberButton
         {
-            get { return this.mathGridButtons[Row, Col]; }
+            get
+            {
+                switch (this.Rules.CurrentOperationCol)
+                {
+                    case 0:
+                        return this.mathGridButtons[2, this.Rules.CurrentOperationRow-1];
+                    case 1:
+                        return this.mathGridButtons[0, this.Rules.CurrentOperationRow];
+                }
+                return null;
+            }
         }
         public Button NextSignButton
         {
-            get { return this.mathGridButtons[Row, Col]; }
+            get { return this.mathGridButtons[1, this.Rules.CurrentOperationRow]; }
         }
 
-        private int row = 0;
+        /*private int row = 0;
         public int Row
         {
             get { return this.row; }
@@ -59,7 +69,7 @@ namespace ChiffresEtLettres
                 else
                     row = value;
             }
-        }
+        }*/
 
         public int numberNumber = 0;
         public Number numberOne;
@@ -171,38 +181,39 @@ namespace ChiffresEtLettres
 
         private void AddNumberButton(object sender, RoutedEventArgs e)
         {
-            this.NextNumberButton.Content = ((Number)(((Button)sender).Tag)).Value;
-            this.NextNumberButton.Tag = ((Button)sender).Tag;
-            this.NextNumberButton.IsEnabled = true;
-            this.StoreNumber((Number)((Button)sender).Tag);
-            SwitchToSignChoice();
-            CurrButton++;
+            if (this.Rules.addNumber((Number)((Button)sender).Tag))
+            {
+                this.NextNumberButton.Content = ((Number)(((Button)sender).Tag)).Value;
+                this.NextNumberButton.Tag = ((Button)sender).Tag;
+                this.NextNumberButton.IsEnabled = true;
+                UpdateResults();
+                if (this.Rules.CurrentOperationCol == 1)
+                    SwitchToSignChoice();
+                else
+                    SwitchToNumberChoice();
+            }
         }
 
         private void AddSignButton(object sender, RoutedEventArgs e)
         {
+            this.Rules.addSign((Number.Sign)((Button)sender).Tag);
             this.NextSignButton.Content = ((Button)sender).Content;
             this.NextSignButton.Tag = ((Button)sender).Content;
             this.NextSignButton.IsEnabled = true;
-            this.StoreSign((Number.Sign)((Button)sender).Tag);
             SwitchToNumberChoice();
-            CurrButton++;
         }
 
-        private void StoreNumber(Number number)
+        private void UpdateResults()
         {
-            if (numberNumber == 0)
+            for (int i = 0; i < this.Rules.NumbersFound.Length; i++ )
             {
-                this.numberOne = number;
-                this.numberNumber++;
+                if (this.Rules.NumbersFound[i] != null)
+                {
+                    this.mathGridButtons[3, i].Tag = this.Rules.NumbersFound[i];
+                    this.mathGridButtons[3, i].Content = this.Rules.NumbersFound[i].Value;
+                    this.mathGridButtons[3, i].IsEnabled = !this.Rules.NumbersFound[i].HasBeenUsed;
+                }
             }
-            else
-                this.numberTwo = number;
-        }
-
-        private void StoreSign(Number.Sign sign)
-        {
-            this.sign = sign;
         }
 
         private void SwitchToSignChoice()
@@ -221,8 +232,8 @@ namespace ChiffresEtLettres
         {
             foreach (Button number in numbers)
             {
-                if (number.Tag != null && !((Number)number.Tag).HasBeenUsed)
-                    number.IsEnabled = true;
+                if (number.Tag != null)
+                    number.IsEnabled = !((Number)number.Tag).HasBeenUsed;
             }
             foreach (Button sign in signs)
             {

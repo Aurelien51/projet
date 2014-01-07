@@ -17,11 +17,16 @@ namespace ChiffresEtLettres
             get;
             private set;
         }
-        public int[] NumbersFound
+        public Number[] NumbersFound
         {
             get;
             set;
         }
+
+        public int CurrentOperationRow = 0;
+        public int CurrentOperationCol = 0;
+        public Number[,] operationGrid;
+        public Number.Sign[] signGrid;
 
         public CompteEstBon()
         {
@@ -47,9 +52,12 @@ namespace ChiffresEtLettres
                         break;
                 }
             }
+            this.NumbersFound = new Number[5];
+            this.operationGrid = new Number[5, 2];
+            this.signGrid = new Number.Sign[5];
         }
 
-        public Number Calculate(Number firstNumber, Number secondNumber, Number.Sign sign)
+        private Number Calculate(Number firstNumber, Number secondNumber, Number.Sign sign)
         {
             Number result = new Number(0);
             switch (sign)
@@ -70,6 +78,64 @@ namespace ChiffresEtLettres
             firstNumber.HasBeenUsed = true;
             secondNumber.HasBeenUsed = true;
             return result;
+        }
+
+        public bool addNumber(Number number)
+        {
+            if (CurrentOperationCol > 0)
+            {
+                switch (signGrid[CurrentOperationRow])
+                {
+                    case Number.Sign.Plus:
+                        this.operationGrid[CurrentOperationRow, CurrentOperationCol] = number;
+                        number.HasBeenUsed = true;
+                        NumbersFound[CurrentOperationRow] = new Number(this.operationGrid[CurrentOperationRow, 0].Value + this.operationGrid[CurrentOperationRow, 1].Value);
+                        break;
+                    case Number.Sign.Minus:
+                        if (number.Value < this.operationGrid[CurrentOperationRow, 0].Value)
+                        {
+                            this.operationGrid[CurrentOperationRow, CurrentOperationCol] = number;
+                            number.HasBeenUsed = true;
+                            NumbersFound[CurrentOperationRow] = new Number(this.operationGrid[CurrentOperationRow, 0].Value - this.operationGrid[CurrentOperationRow, 1].Value);
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    case Number.Sign.Multiply:
+                        this.operationGrid[CurrentOperationRow, CurrentOperationCol] = number;
+                        number.HasBeenUsed = true;
+                        NumbersFound[CurrentOperationRow] = new Number(this.operationGrid[CurrentOperationRow, 0].Value * this.operationGrid[CurrentOperationRow, 1].Value);
+                        break;
+                    case Number.Sign.Divide:
+                        if (this.operationGrid[CurrentOperationRow, 0].Value%number.Value == 0)
+                        {
+                            this.operationGrid[CurrentOperationRow, CurrentOperationCol] = number;
+                            number.HasBeenUsed = true;
+                            NumbersFound[CurrentOperationRow] = new Number(this.operationGrid[CurrentOperationRow, 0].Value / this.operationGrid[CurrentOperationRow, 1].Value);
+                            break;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                }
+                CurrentOperationRow++;
+                CurrentOperationCol = 0;
+            }
+            else
+            {
+                this.operationGrid[CurrentOperationRow, CurrentOperationCol] = number;
+                number.HasBeenUsed = true;
+                CurrentOperationCol = 1;
+            }
+            return true;
+        }
+
+        public void addSign(Number.Sign sign)
+        {
+            this.signGrid[CurrentOperationRow] = sign;
         }
     }
 }
