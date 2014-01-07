@@ -17,6 +17,9 @@ namespace Countdown
         public static void newGame(Player player)
         {
             GameEngine.players.Add(player);
+
+            LongestWord word = new LongestWord();
+
             GameEngine.CurrentPhase = new CompteEstBon();
         }
 
