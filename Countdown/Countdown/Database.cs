@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Windows;
 
 namespace Countdown
 {
@@ -14,7 +15,7 @@ namespace Countdown
         /// </summary>
         public Database()
         {
-            dbConnection = "Data Source=chiffres_et_lettres.s3db";
+            this.dbConnection = "Data Source=c:/chiffres_et_lettres.db";
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace Countdown
             DataTable dt = new DataTable();
             try
             {
-                SQLiteConnection cnn = new SQLiteConnection(dbConnection);
+                SQLiteConnection cnn = new SQLiteConnection(this.dbConnection);
                 cnn.Open();
                 SQLiteCommand mycommand = new SQLiteCommand(cnn);
                 mycommand.CommandText = sql;
@@ -50,7 +51,7 @@ namespace Countdown
         /// <returns>An Integer containing the number of rows updated.</returns>
         public int ExecuteNonQuery(string sql)
         {
-            SQLiteConnection cnn = new SQLiteConnection(dbConnection);
+            SQLiteConnection cnn = new SQLiteConnection(this.dbConnection);
             cnn.Open();
             SQLiteCommand mycommand = new SQLiteCommand(cnn);
             mycommand.CommandText = sql;
@@ -66,7 +67,7 @@ namespace Countdown
         /// <returns>A string.</returns>
         public string ExecuteScalar(string sql)
         {
-            SQLiteConnection cnn = new SQLiteConnection(dbConnection);
+            SQLiteConnection cnn = new SQLiteConnection(this.dbConnection);
             cnn.Open();
             SQLiteCommand mycommand = new SQLiteCommand(cnn);
             mycommand.CommandText = sql;

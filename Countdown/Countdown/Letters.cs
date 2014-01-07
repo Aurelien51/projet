@@ -5,8 +5,10 @@ using System.Text;
 
 namespace Countdown
 {
-    class Letters
+    public class Letters
     {
+        private Random random;
+
         public char vowel()
         {
             String vowels = "AEIOUY";
@@ -22,11 +24,16 @@ namespace Countdown
         private char randomLetter(String letters)
         {
             Random random = new Random();
-            int randomNumber = random.Next(1, letters.Length);
+            int randomNumber = this.random.Next(1, letters.Length);
 
             char letter = letters[randomNumber];
 
             return letter;
+        }
+
+        public Letters()
+        {
+            this.random = new Random();
         }
     }
 }
