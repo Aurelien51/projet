@@ -11,14 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ChiffresEtLettres
+namespace Countdown
 {
     /// <summary>
-    /// Interaction logic for MotPlusLong.xaml
+    /// Interaction logic for LongestWordWindow.xaml
     /// </summary>
-    public partial class MotPlusLong : Window
+    public partial class LongestWordWindow : Window
     {
-        public MotPlusLong()
+        public LongestWordWindow()
         {
             InitializeComponent();
         }

@@ -11,7 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ChiffresEtLettres
+namespace Countdown
 {
     /// <summary>
     /// Interaction logic for PlayerSetup.xaml
@@ -45,6 +45,11 @@ namespace ChiffresEtLettres
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

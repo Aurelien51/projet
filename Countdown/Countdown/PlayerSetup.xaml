@@ -1,7 +1,7 @@
-﻿<Window x:Class="ChiffresEtLettres.PlayerSetup"
+﻿<Window x:Class="Countdown.PlayerSetup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Nouveau joueur" Height="150" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="Nouveau joueur" Height="150" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" Loaded="Window_Loaded">
     <Grid>
         <TextBox x:Name="playerName" Height="23" Margin="50,25,50,0" TextWrapping="Wrap" VerticalAlignment="Top" x:FieldModifier="private">
             <TextBox.Style>

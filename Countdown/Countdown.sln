@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChiffresEtLettres", "ChiffresEtLettres\ChiffresEtLettres.csproj", "{4747BE7A-627A-45EC-993E-2C09B1F61689}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Countdown", "Countdown\Countdown.csproj", "{4747BE7A-627A-45EC-993E-2C09B1F61689}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
