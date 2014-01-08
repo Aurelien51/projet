@@ -49,7 +49,6 @@ namespace Countdown
             button9.Content = l.lettersAvailable[8];
             charButton[9] = button10;
             button10.Content = l.lettersAvailable[9];
-            button1.IsEnabled = true;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -203,7 +202,7 @@ namespace Countdown
 
         private void consonne_Click(object sender, RoutedEventArgs e)
         {
-            if (indexTab <= 10)
+            if (indexTab < 10)
             {
                 switch (indexTab)
                 {
@@ -250,11 +249,27 @@ namespace Countdown
                 }
                 indexTab++;
             }
+
+            if (indexTab >= 10)
+            {
+                voyelle.IsEnabled = false;
+                consonne.IsEnabled = false;
+                button1.IsEnabled = true;
+                button2.IsEnabled = true;
+                button3.IsEnabled = true;
+                button4.IsEnabled = true;
+                button5.IsEnabled = true;
+                button6.IsEnabled = true;
+                button7.IsEnabled = true;
+                button8.IsEnabled = true;
+                button9.IsEnabled = true;
+                button10.IsEnabled = true;
+            }
         }
 
         private void voyelle_Click(object sender, RoutedEventArgs e)
         {
-            if (indexTab <= 10)
+            if (indexTab < 10)
             {
                 switch (indexTab)
                 {
@@ -300,6 +315,22 @@ namespace Countdown
                         break;
                 }
                 indexTab++;
+            }
+
+            if(indexTab >= 10)
+            {
+                consonne.IsEnabled = false;
+                voyelle.IsEnabled = false;
+                button1.IsEnabled = true;
+                button2.IsEnabled = true;
+                button3.IsEnabled = true;
+                button4.IsEnabled = true;
+                button5.IsEnabled = true;
+                button6.IsEnabled = true;
+                button7.IsEnabled = true;
+                button8.IsEnabled = true;
+                button9.IsEnabled = true;
+                button10.IsEnabled = true;
             }
         }
     }
