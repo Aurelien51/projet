@@ -43,24 +43,13 @@ namespace Countdown
             this.lettersAvailable = this.lettersAvailable.OrderBy(x => random.Next()).ToArray();
             MessageBox.Show("Lettres: " + new String(this.lettersAvailable));
 
-            String query = "SELECT word FROM dictionary";
-            for (int i = 0; i < 10; i++)
-            {
-                if (i == 0)
-                {
-                    query += " WHERE";
-                }
-                else
-                {
-                    query += " AND";
-                }
-
-                query += " word LIKE '%" + this.lettersAvailable[i] + "%'";
-
-            }
-            query += " ORDER BY LENGTH(word) DESC LIMIT 5";
-            //MessageBox.Show(query);
+            String query = "SELECT word FROM dictionary WHERE word REGEXP \"^[" + new String(this.lettersAvailable).ToLower() + "]*$\" ORDER BY LENGTH(word) DESC LIMIT 5";
+            MessageBox.Show(query);
             DataTable list = this.database.GetDataTable(query);
+
+            if (list.Rows.Count == 0) {
+                MessageBox.Show("Pas de résultat...");
+            }
 
             foreach (DataRow row in list.Rows)
             {
