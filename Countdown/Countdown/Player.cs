@@ -7,11 +7,12 @@ namespace Countdown
 {
     class Player
     {
-        private string name;
+        public string Name;
+        public int Score;
 
         public Player(String playerName)
         {
-            this.name = playerName;
+            this.Name = playerName;
         }
     }
 }

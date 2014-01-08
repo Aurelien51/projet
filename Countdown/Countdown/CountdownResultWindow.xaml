@@ -1,0 +1,8 @@
+﻿<Window x:Class="Countdown.CountdownResultWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Résultats" Height="300" Width="300" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+    <Grid>
+        
+    </Grid>
+</Window>

@@ -59,19 +59,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CountdownWindow.xaml">
+    <Page Include="CountdownResultWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Menu.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="CountdownWindow.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Countdown.cs" />
+    <Compile Include="CountdownResultWindow.xaml.cs">
+      <DependentUpon>CountdownResultWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CountdownWindow.xaml.cs">
       <DependentUpon>CountdownWindow.xaml</DependentUpon>
     </Compile>
@@ -81,13 +84,13 @@
     </Compile>
     <Compile Include="GameEngine.cs" />
     <Compile Include="Letters.cs" />
-    <Compile Include="Menu.xaml.cs">
-      <DependentUpon>Menu.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Page Include="LongestWordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="PlayerSetup.xaml">
       <SubType>Designer</SubType>
@@ -97,6 +100,9 @@
   <ItemGroup>
     <Compile Include="LongestWordWindow.xaml.cs">
       <DependentUpon>LongestWordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu.xaml.cs">
+      <DependentUpon>Menu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Number.cs" />
     <Compile Include="Phase.cs" />

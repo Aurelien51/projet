@@ -7,5 +7,6 @@ namespace Countdown
 {
     public abstract class Phase
     {
+        abstract internal Player[] GetScores();
     }
 }

@@ -159,7 +159,54 @@ namespace Countdown
 
         internal void CancelSign(Number.Sign sign)
         {
-            throw new NotImplementedException();
+        }
+
+        internal bool PlayerDone()
+        {
+            Number result = null;
+            foreach (Number number in NumbersFound)
+            {
+                if (number != null)
+                    result = number;
+            }
+            ResetPhase();
+            return GameEngine.StoreScore(result != null ? (int)Math.Sqrt((this.NumberToReach - result.Value) * (this.NumberToReach - result.Value)) : -1);
+        }
+
+        internal void CancelEverything()
+        {
+            ResetPhase();
+        }
+
+        private void ResetPhase()
+        {
+            foreach (Number number in this.NumbersAvailable)
+            {
+                number.HasBeenUsed = false;
+            }
+            this.NumbersFound = new Number[5];
+            this.operationGrid = new Number[5, 2];
+            this.signGrid = new Number.Sign[5];
+            this.CurrentOperationRow = 0;
+            this.CurrentOperationCol = 0;
+        }
+
+        internal override Player[] GetScores()
+        {
+            Player[] results = GameEngine.Players;
+            for (int iterator = 0; iterator < results.Length; iterator++)
+            {
+                for (int index = 0; index < results.Length - 1; index++)
+                {
+                    if (results[index].Score > results[index + 1].Score)
+                    {
+                        var tmp = results[index];
+                        results[index] = results[index + 1];
+                        results[index + 1] = tmp;
+                    }
+                }
+            }
+            return results;
         }
     }
 }
