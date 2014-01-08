@@ -64,7 +64,12 @@ namespace Countdown
 
         private void startGame()
         {
-            CompteEstBonWindow phase1 = new CompteEstBonWindow();
+            /*CompteEstBonWindow phase1 = new CompteEstBonWindow();
+            App.Current.MainWindow = phase1;
+            this.Close();
+            phase1.Show();*/
+
+            LongestWordWindow phase1 = new LongestWordWindow();
             App.Current.MainWindow = phase1;
             this.Close();
             phase1.Show();

@@ -21,6 +21,23 @@ namespace Countdown
         public LongestWordWindow()
         {
             InitializeComponent();
+            LongestWord l = new LongestWord();
+            button1.Content = l.lettersAvailable[0];
+            button2.Content = l.lettersAvailable[1];
+            button3.Content = l.lettersAvailable[2];
+            button4.Content = l.lettersAvailable[3];
+            button5.Content = l.lettersAvailable[4];
+            button6.Content = l.lettersAvailable[5];
+            button7.Content = l.lettersAvailable[6];
+            button8.Content = l.lettersAvailable[7];
+            button9.Content = l.lettersAvailable[8];
+            button10.Content = l.lettersAvailable[9];
+            button1.IsEnabled = true;
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            label1.Content = button1.Content;
         }
     }
 }
