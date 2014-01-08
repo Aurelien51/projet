@@ -64,7 +64,7 @@ namespace Countdown
 
         private void startGame()
         {
-            CompteEstBonWindow phase1 = new CompteEstBonWindow();
+            CountdownWindow phase1 = new CountdownWindow();
             App.Current.MainWindow = phase1;
             this.Close();
             phase1.Show();

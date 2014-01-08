@@ -16,7 +16,7 @@ namespace Countdown
     /// <summary>
     /// Interaction logic for CompteEstBon.xaml
     /// </summary>
-    public partial class CompteEstBonWindow : Window
+    public partial class CountdownWindow : Window
     {
         private Button[,] mathGridButtons;
         private Button[] numbers;
@@ -29,7 +29,7 @@ namespace Countdown
                 switch (this.Rules.CurrentOperationCol)
                 {
                     case 0:
-                        return this.mathGridButtons[2, this.Rules.CurrentOperationRow-1];
+                        return this.mathGridButtons[2, this.Rules.CurrentOperationRow - 1];
                     case 1:
                         return this.mathGridButtons[0, this.Rules.CurrentOperationRow];
                 }
@@ -39,6 +39,10 @@ namespace Countdown
         public Button CurrentSignButton
         {
             get { return this.mathGridButtons[1, this.Rules.CurrentOperationRow]; }
+        }
+        public Button PreviousSignButton
+        {
+            get { return this.mathGridButtons[1, this.Rules.CurrentOperationRow - 1]; }
         }
 
         public int numberNumber = 0;
@@ -51,7 +55,7 @@ namespace Countdown
             get { return (CompteEstBon)(GameEngine.CurrentPhase); }
         }
 
-        public CompteEstBonWindow()
+        public CountdownWindow()
         {
             InitializeComponent();
 
@@ -160,9 +164,17 @@ namespace Countdown
                 this.CurrentNumberButton.Click += RemoveNumber;
                 UpdateResults();
                 if (this.Rules.CurrentOperationCol == 1)
+                {
                     SwitchToSignChoice();
+                    if (this.Rules.CurrentOperationRow > 0)
+                        this.mathGridButtons[2, this.Rules.CurrentOperationRow - 1].IsEnabled = false;
+                }
                 else
+                {
                     SwitchToNumberChoice();
+                    if (this.PreviousSignButton != null)
+                        this.PreviousSignButton.IsEnabled = false;
+                }
             }
         }
 
@@ -174,12 +186,13 @@ namespace Countdown
             this.CurrentSignButton.IsEnabled = true;
             this.CurrentSignButton.Click -= RemoveSign;
             this.CurrentSignButton.Click += RemoveSign;
+            this.mathGridButtons[0, this.Rules.CurrentOperationRow].IsEnabled = false;
             SwitchToNumberChoice();
         }
 
         private void UpdateResults()
         {
-            for (int i = 0; i < this.Rules.NumbersFound.Length; i++ )
+            for (int i = 0; i < this.Rules.NumbersFound.Length; i++)
             {
                 if (this.Rules.NumbersFound[i] != null)
                 {
@@ -187,17 +200,31 @@ namespace Countdown
                     this.mathGridButtons[3, i].Content = this.Rules.NumbersFound[i].Value;
                     this.mathGridButtons[3, i].IsEnabled = !this.Rules.NumbersFound[i].HasBeenUsed;
                 }
+                else
+                {
+                    this.mathGridButtons[3, i].Tag = null;
+                    this.mathGridButtons[3, i].Content = null;
+                    this.mathGridButtons[3, i].IsEnabled = false;
+                }
             }
         }
 
         private void RemoveNumber(object sender, RoutedEventArgs e)
         {
-
+            Button button = (Button)sender;
+            this.Rules.CancelNumber((Number)button.Tag);
+            button.Tag = null;
+            button.Content = null;
+            button.IsEnabled = false;
+            if (this.CurrentSignButton != null)
+                this.CurrentSignButton.IsEnabled = true;
+            this.UpdateResults();
+            this.SwitchToNumberChoice();
         }
 
         private void RemoveSign(object sender, RoutedEventArgs e)
         {
-
+            this.Rules.CancelSign((Number.Sign)((Button)sender).Tag);
         }
 
         private void SwitchToSignChoice()

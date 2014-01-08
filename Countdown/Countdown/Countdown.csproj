@@ -59,7 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="CompteEstBonWindow.xaml">
+    <Page Include="CountdownWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -71,9 +71,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompteEstBon.cs" />
-    <Compile Include="CompteEstBonWindow.xaml.cs">
-      <DependentUpon>CompteEstBonWindow.xaml</DependentUpon>
+    <Compile Include="Countdown.cs" />
+    <Compile Include="CountdownWindow.xaml.cs">
+      <DependentUpon>CountdownWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LongestWord.cs" />
     <Compile Include="Database.cs">

@@ -137,5 +137,29 @@ namespace Countdown
         {
             this.signGrid[CurrentOperationRow] = sign;
         }
+
+        internal void CancelNumber(Number number)
+        {
+            if (CurrentOperationCol == 0)
+            {
+                CurrentOperationRow--;
+                CurrentOperationCol++;
+                NumbersFound[CurrentOperationRow] = null;
+            }
+            else
+            {
+                CurrentOperationCol--;
+            }
+            if (this.operationGrid[CurrentOperationRow, CurrentOperationCol] == number)
+            {
+                this.operationGrid[CurrentOperationRow, CurrentOperationCol] = null;
+                number.HasBeenUsed = false;
+            }
+        }
+
+        internal void CancelSign(Number.Sign sign)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

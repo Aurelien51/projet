@@ -1,4 +1,4 @@
-﻿<Window x:Class="Countdown.CompteEstBonWindow"
+﻿<Window x:Class="Countdown.CountdownWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Le Compte est bon" Height="403" Width="388" WindowStartupLocation="CenterScreen">
