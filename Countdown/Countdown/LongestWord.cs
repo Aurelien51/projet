@@ -45,7 +45,7 @@ namespace Countdown
 
             MessageBox.Show("Lettres: " + new String(this.lettersAvailable));*/
 
-        public void SearchWord()
+        public void Solutions()
         {
             String query = "SELECT word FROM dictionary WHERE word REGEXP \"^[" + new String(this.lettersAvailable.Distinct().ToArray()).ToLower() + "]*$\"";
 
@@ -69,13 +69,13 @@ namespace Countdown
 
             }
 
-            query += " ORDER BY LENGTH(word) DESC LIMIT 10";
-            MessageBox.Show(query);
+            query += " ORDER BY LENGTH(word) DESC LIMIT 5";
+            //MessageBox.Show(query);
             DataTable list = this.database.GetDataTable(query);
 
             if (list.Rows.Count == 0)
             {
-                MessageBox.Show("Pas de résultat...");
+                MessageBox.Show("Pas de solution...");
             }
 
             foreach (DataRow row in list.Rows)
@@ -86,15 +86,15 @@ namespace Countdown
 
         public void SearchWord(String res)
         {
-            String query = "SELECT word FROM dictionary WHERE word like '"+ res + "';";
+            String query = "SELECT word FROM dictionary WHERE word like '"+ res.ToLower() + "';";
             DataTable list = this.database.GetDataTable(query);
             if (list.Rows.Count == 0)
             {
-                MessageBox.Show("N'existe pas");
+                MessageBox.Show("Le mot '" + res + "' n'existe pas...");
             }
             foreach (DataRow row in list.Rows)
             {
-                MessageBox.Show("Disponible: " + row["word"].ToString() + " / Taille: " + row["word"].ToString().Length);
+                MessageBox.Show("Correct: " + row["word"].ToString() + " / Taille: " + row["word"].ToString().Length);
             }
         }
 

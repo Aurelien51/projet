@@ -49,6 +49,7 @@ namespace Countdown
             button9.Content = l.lettersAvailable[8];
             charButton[9] = button10;
             button10.Content = l.lettersAvailable[9];
+            button13.IsEnabled = false;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
@@ -134,6 +135,12 @@ namespace Countdown
         private void validate_Click(object sender, RoutedEventArgs e)
         {
             l.SearchWord(res);
+            button13.IsEnabled = true;
+        }
+
+        private void solutions_Click(object sender, RoutedEventArgs e)
+        {
+            l.Solutions();
         }
 
         private void button11_Click(object sender, RoutedEventArgs e)
@@ -150,6 +157,7 @@ namespace Countdown
             button8.IsEnabled = true;
             button9.IsEnabled = true;
             button10.IsEnabled = true;
+            button13.IsEnabled = false;
             tmp = -1;
         }
 
@@ -198,6 +206,8 @@ namespace Countdown
                     button10.IsEnabled = true;
                     break;
             }
+
+            button13.IsEnabled = false;
         }
 
         private void consonne_Click(object sender, RoutedEventArgs e)
