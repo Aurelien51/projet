@@ -11,7 +11,7 @@ namespace Countdown
     public class LongestWord : Phase
     {
         private Database database;
-        private Letters letters;
+        public Letters letters;
 
         public char[] lettersAvailable
         {
@@ -24,8 +24,9 @@ namespace Countdown
             this.letters = new Letters();
             this.database = new Database();
             this.lettersAvailable = new char[10];
+        }
 
-            Random random = new Random();
+           /* Random random = new Random();
 
             //Examples
             int vowelNumber = random.Next(2, 10);
@@ -42,8 +43,7 @@ namespace Countdown
 
             this.lettersAvailable = this.lettersAvailable.OrderBy(x => random.Next()).ToArray();
 
-            MessageBox.Show("Lettres: " + new String(this.lettersAvailable));
-        }
+            MessageBox.Show("Lettres: " + new String(this.lettersAvailable));*/
 
         public void SearchWord()
         {
@@ -84,12 +84,23 @@ namespace Countdown
             }
         }
 
-        public void putWord()
+        public void SearchWord(String res)
         {
-            for (int i = 0; i < this.lettersAvailable.Length; i++)
+            String query = "SELECT word FROM dictionary WHERE word like '"+ res + "';";
+            DataTable list = this.database.GetDataTable(query);
+            if (list.Rows.Count == 0)
             {
-                
+                MessageBox.Show("N'existe pas");
             }
+            foreach (DataRow row in list.Rows)
+            {
+                MessageBox.Show("Disponible: " + row["word"].ToString() + " / Taille: " + row["word"].ToString().Length);
+            }
+        }
+
+        internal override Player[] GetScores()
+        {
+            return null;
         }
     }
 }
