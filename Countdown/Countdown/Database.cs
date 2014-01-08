@@ -219,7 +219,7 @@ class MyCharCount : SQLiteFunction
     public override object Invoke(object[] args)
     {
         String field = Convert.ToString(args[0]);
-        char character = Convert.ToString(args[0]).ToCharArray()[0];
+        char character = Convert.ToString(args[1]).ToCharArray()[0];
         int count = field.Split(character).Length - 1;
 
         //MessageBox.Show("Nombre: " + count + " " + character + " " + field);
