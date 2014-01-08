@@ -212,3 +212,18 @@ class MyRegEx : SQLiteFunction
         return System.Text.RegularExpressions.Regex.IsMatch(Convert.ToString(args[1]), Convert.ToString(args[0]));
     }
 }
+
+[SQLiteFunction(Name = "CHAR_COUNT", Arguments = 2, FuncType = FunctionType.Scalar)]
+class MyCharCount : SQLiteFunction
+{
+    public override object Invoke(object[] args)
+    {
+        String field = Convert.ToString(args[0]);
+        char character = Convert.ToString(args[0]).ToCharArray()[0];
+        int count = field.Split(character).Length - 1;
+
+        //MessageBox.Show("Nombre: " + count + " " + character + " " + field);
+
+        return count;
+    }
+}

@@ -43,7 +43,29 @@ namespace Countdown
             this.lettersAvailable = this.lettersAvailable.OrderBy(x => random.Next()).ToArray();
             MessageBox.Show("Lettres: " + new String(this.lettersAvailable));
 
-            String query = "SELECT word FROM dictionary WHERE word REGEXP \"^[" + new String(this.lettersAvailable).ToLower() + "]*$\" ORDER BY LENGTH(word) DESC LIMIT 5";
+            String query = "SELECT word FROM dictionary WHERE word REGEXP \"^[" + new String(this.lettersAvailable.Distinct().ToArray()).ToLower() + "]+$\"";
+
+            Dictionary<char, int> occurences = new Dictionary<char, int>();
+            for (int i = 0; i < this.lettersAvailable.Length; i++)
+            {
+                if (!occurences.ContainsKey(this.lettersAvailable[i]))
+                {
+                    occurences.Add(this.lettersAvailable[i], 1);
+                }
+                else
+                {
+                    occurences[this.lettersAvailable[i]] += 1;
+                }
+            }
+
+            foreach (char c in occurences.Keys) 
+            {
+                int i = occurences[c];
+                query += " AND CHAR_COUNT(word, '" + c.ToString().ToLower() +"') <=  " + i;
+                
+            }
+
+            query += " ORDER BY LENGTH(word) DESC LIMIT 5";
             MessageBox.Show(query);
             DataTable list = this.database.GetDataTable(query);
 
