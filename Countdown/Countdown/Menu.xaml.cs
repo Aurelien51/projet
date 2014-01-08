@@ -24,7 +24,7 @@ namespace Countdown
             InitializeComponent();
         }
 
-        private void newHumanGame_Click(object sender, RoutedEventArgs e)
+        private void countdownGame_Click(object sender, RoutedEventArgs e)
         {
             PlayerSetup playerDialog = new PlayerSetup();
             playerDialog.Owner = this;
@@ -39,21 +39,28 @@ namespace Countdown
                 {
                     Player player2 = new Player(playerDialog.PlayerName);
                     GameEngine.newGame(player1, player2);
-                    startGame();
+                    startCountdownGame();
                 }
             }
         }
 
-        private void newBotGame_Click(object sender, RoutedEventArgs e)
+        private void longestwordGame_Click(object sender, RoutedEventArgs e)
         {
             PlayerSetup playerDialog = new PlayerSetup();
             playerDialog.Owner = this;
             playerDialog.ShowDialog();
             if (!playerDialog.Cancel)
             {
-                Player player = new Player(playerDialog.PlayerName);
-                GameEngine.newGame(player);
-                startGame();
+                Player player1 = new Player(playerDialog.PlayerName);
+                playerDialog = new PlayerSetup();
+                playerDialog.Owner = this;
+                playerDialog.ShowDialog();
+                if (!playerDialog.Cancel)
+                {
+                    Player player2 = new Player(playerDialog.PlayerName);
+                    GameEngine.newGame(player1, player2);
+                    startLongestwordGame();
+                }
             }
         }
         
@@ -62,13 +69,16 @@ namespace Countdown
             Application.Current.Shutdown();
         }
 
-        private void startGame()
+        private void startCountdownGame()
         {
-            /*CompteEstBonWindow phase1 = new CompteEstBonWindow();
+            CountdownWindow phase1 = new CountdownWindow();
             App.Current.MainWindow = phase1;
             this.Close();
-            phase1.Show();*/
+            phase1.Show();
+        }
 
+        private void startLongestwordGame()
+        {
             LongestWordWindow phase1 = new LongestWordWindow();
             App.Current.MainWindow = phase1;
             this.Close();

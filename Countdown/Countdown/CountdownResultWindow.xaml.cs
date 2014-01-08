@@ -23,10 +23,28 @@ namespace Countdown
             InitializeComponent();
 
             var playerList = GameEngine.CurrentPhase.GetScores();
-            foreach (Player player in playerList)
+            for (int i = 0; i < playerList.Length; i++)
             {
-                this.AddChild(new Label().Content = player.Name);
-                this.AddChild(new Label().Content = player.Score);
+                Label tmp = new Label();
+                tmp.Content = ""+(i+1)+"-";
+                tmp.HorizontalAlignment = HorizontalAlignment.Left;
+                tmp.VerticalAlignment = VerticalAlignment.Top;
+                tmp.Width = 20;
+                tmp.Margin = new Thickness(10, 10 + i * 33, 0, 0);
+                this.grid.Children.Add(tmp);
+                tmp = new Label();
+                tmp.Content = playerList[i].Name;
+                tmp.HorizontalAlignment = HorizontalAlignment.Left;
+                tmp.VerticalAlignment = VerticalAlignment.Top;
+                tmp.Width = 100;
+                tmp.Margin = new Thickness(40, 10 + i * 33, 0, 0);
+                this.grid.Children.Add(tmp);
+                tmp = new Label();
+                tmp.Content = playerList[i].Score;
+                tmp.HorizontalAlignment = HorizontalAlignment.Left;
+                tmp.VerticalAlignment = VerticalAlignment.Top;
+                tmp.Margin = new Thickness(150, 10 + i * 33, 10, 10);
+                this.grid.Children.Add(tmp);
             }
         }
     }
